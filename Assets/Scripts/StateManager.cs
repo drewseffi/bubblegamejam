@@ -44,6 +44,10 @@ public class StateManager : MonoBehaviour
     public GameObject stall;
     private bool boonSpawn;
 
+    public TMP_Text fpsText;
+
+    public bool dead;
+
     private void Awake()
     {
         if (Instance == null)
@@ -55,6 +59,8 @@ public class StateManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        dead = false;
     }
 
     void Start()
@@ -68,6 +74,9 @@ public class StateManager : MonoBehaviour
         blunderbuss.SetActive(false);
         weapon = 1;
         boonSpawn = false;
+        //AudioSource src = audioManager.Instance.GetComponent<AudioSource>();
+        audioManager.Instance.PlayMusic("T1");
+        dead = false;
     }
 
     public void Expand()
@@ -91,6 +100,7 @@ public class StateManager : MonoBehaviour
     
         //StartCoroutine("Wait", 1f);
         Time.timeScale = 0f;
+        dead = true;
     }
 
     IEnumerable Wait(float duration)
@@ -144,6 +154,9 @@ public class StateManager : MonoBehaviour
         }
 
         float fps = 1.0f / Time.deltaTime;
+
+        fpsText.text = "FPS:" + Convert.ToString(fps);
+
         //Debug.Log("FPS: " + fps);
 
 

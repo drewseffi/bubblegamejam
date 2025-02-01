@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             AddImpact(-cam.transform.forward, shotgunForce);
             shotgunCharges--;
+            audioManager.Instance.PlaySFX("BlunderbussAlt", src);
         }
 
         if (impact.magnitude > 0.2F)

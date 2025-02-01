@@ -14,6 +14,6 @@ public class UIManager : MonoBehaviour
 
     public void sfxVolume()
     {
-        audioManager.Instance.MusicVolume(sfxSlider.value);
+        audioManager.Instance.SFXVolume(sfxSlider.value);
     }
 }

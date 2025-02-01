@@ -27,11 +27,13 @@ public class audioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        PlayMusic("MenuTheme");
     }
 
     void Update()
     {
-        //musicSource.volume = musicVol;
+        musicSource.volume = musicVol;
     }
 
     private void Start()
@@ -39,9 +41,17 @@ public class audioManager : MonoBehaviour
         stepSrc = gameObject.GetComponent<AudioSource>();
     }
 
+    private void isDead()
+    {
+        if (StateManager.Instance.dead == true)
+        {
+            musicSource.Stop();
+        }
+    }
+
     public void PlayMusic(string name)
     {
-
+        musicSource.Stop();
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
         if(s == null)
@@ -67,7 +77,7 @@ public class audioManager : MonoBehaviour
         }
         else
         {
-            src.PlayOneShot(s.clip);
+            src.PlayOneShot(s.clip, sfxVol);
         }
     }
 

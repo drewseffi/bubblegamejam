@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoonManager : MonoBehaviour
 {
     public GameObject me;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class BoonManager : MonoBehaviour
         {
             StateManager.Instance.Heal();
             me.gameObject.SetActive(false);
+            AudioSource src = player.GetComponent<AudioSource>();
+            audioManager.Instance.PlaySFX("BoonOnClick", src);
         }
     }
 }
